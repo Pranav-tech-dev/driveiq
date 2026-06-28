@@ -7,7 +7,7 @@ import os
 import requests
 
 # ── Gemini (primary, free) / HuggingFace (fallback) AI ────────────────────────
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
+GEMINI_API_KEY = os.environ.get("AQ.Ab8RN6JmVu5NMv8cEx29Dgf1hpChm4bgDW9AcY1Dm1zMiSHhLg") or st.secrets.get("AQ.Ab8RN6JmVu5NMv8cEx29Dgf1hpChm4bgDW9AcY1Dm1zMiSHhLg", "")
 GEMINI_MODEL   = "gemini-2.5-flash"
 HF_TOKEN = os.environ.get("HF_TOKEN", "")
 
