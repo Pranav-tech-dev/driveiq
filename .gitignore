@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.env
+venv/
+driveiq.db
+.streamlit/secrets.toml
