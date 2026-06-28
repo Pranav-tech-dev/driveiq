@@ -14,7 +14,7 @@ Without a verified sender the API returns 400/403.
 import os
 import requests
 
-BREVO_API_KEY = os.environ.get("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") or st.secrets.get("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", "")
+BREVO_API_KEY = os.environ.get("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") 
 BREVO_SENDER_EMAIL = os.environ.get("driveiq.career@gmail.com") or st.secrets.get("driveiq.career@gmail.com", "")   # must be verified in Brevo
 BREVO_SENDER_NAME  = "DriveIQ Recruitment"
 
