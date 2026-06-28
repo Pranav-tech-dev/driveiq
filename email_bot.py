@@ -13,9 +13,10 @@ Without a verified sender the API returns 400/403.
 
 import os
 import requests
+import streamlit as st
 
-BREVO_API_KEY = os.environ.get("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") 
-BREVO_SENDER_EMAIL = os.environ.get("driveiq.career@gmail.com") or st.secrets.get("driveiq.career@gmail.com", "")   # must be verified in Brevo
+BREVO_API_KEY      = st.secrets.get("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", "")
+BREVO_SENDER_EMAIL = st.secrets.get("driveiq.career@gmail.com", "")
 BREVO_SENDER_NAME  = "DriveIQ Recruitment"
 
 
@@ -111,7 +112,6 @@ def send_report(to_email: str, to_name: str, report_text: str) -> tuple[bool, st
         if r.status_code in (200, 201):
             return True, f"Email sent to {to_email}"
         else:
-            # Parse Brevo error
             try:
                 err = r.json()
                 msg = err.get("message", r.text)
