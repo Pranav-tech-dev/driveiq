@@ -8,9 +8,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 import os
 import time
 
-STREAMLIT_URL = os.environ.get("STREAMLIT_APP_URL", "https://your-app-name.streamlit.app/")
+# Get your Streamlit app URL from environment variable
+STREAMLIT_URL = os.environ.get("STREAMLIT_APP_URL", "").strip()
+
+if not STREAMLIT_URL:
+    print("❌ STREAMLIT_APP_URL is empty or not set. Check your GitHub secret.")
+    exit(1)
 
 def keep_app_alive():
+    """Visit the Streamlit app to prevent it from sleeping"""
     try:
         options = Options()
         options.add_argument('--headless=new')
@@ -26,11 +32,12 @@ def keep_app_alive():
         print(f"Opening {STREAMLIT_URL}...")
         driver.get(STREAMLIT_URL)
 
+        # Wait for page to load (up to 30 seconds)
         WebDriverWait(driver, 30).until(
             EC.presence_of_all_elements_located((By.TAG_NAME, "script"))
         )
 
-        time.sleep(5)
+        time.sleep(5)  # Let it load fully
         print("✅ App pinged successfully!")
 
         driver.quit()
