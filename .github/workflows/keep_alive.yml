@@ -27,5 +27,5 @@ jobs:
       
       - name: Keep app awake
         env:
-          STREAMLIT_APP_URL: ${{ secrets.STREAMLIT_APP_URL }}
+          STREAMLIT_APP_URL: ${{ secrets.KEEPITUP }}
         run: python keep_alive.py
